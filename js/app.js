@@ -1,7 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-const winCombos = [
-  []
-]
+let winCombos = []
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -61,7 +59,7 @@ let winner
     } else {
       winner === "T" ? gameStatus.textContent = "It's a tie!" : gameStatus.textContent = `Congratulations! ${playerName()} won!`
     }
-    
+    // MAY NEED TO SWITCH PLAYER 1 AND 2 
     function playerName(){
       if(turn === -1) {
         return "Player 1"
@@ -69,16 +67,20 @@ let winner
         return "Player 2"
       }
     }
+    winCombos = [
+      [squares[0], squares[1], squares[2]],
+      [squares[3], squares[4], squares[5]],
+      [squares[6], squares[7], squares[8]],
+      [squares[0], squares[3], squares[6]],
+      [squares[1], squares[4], squares[7]],
+      [squares[2], squares[5], squares[8]],
+      [squares[0], squares[4], squares[8]],
+      [squares[2], squares[4], squares[6]],
+
+    ]
+    
   } 
   
 
 
 
-  // when winner = null, the game is in progess
-    // message = whose turn it is
-  // when winner = T, its a tie
-    // message = its a tie
-  // otherwise (if winner)
-
-  // if winner = null, the game is in progess- wouldn't you want a message to say whose turn it is while the game is in progress?
-  // when the winner is not null, that means there is a tie or a winner?
