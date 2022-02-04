@@ -32,7 +32,7 @@ let winner
     init()
 
     function init(){
-      boardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      boardArray = [1, 1, -1, 1, null, null, null, null, null]
 
       console.log(boardArray)
       turn = 1
@@ -45,7 +45,7 @@ let winner
    function render() {
     for(let i = 0; i < boardArray.length; i++){
       let currentSquare = boardArray[i]
-      console.log(currentSquare)
+      // console.log(currentSquare)
       if(currentSquare === -1){
         currentSquare.style.backgroundColor = 'green'
         // if player 1 occupies the current square being iterated over, change its color to green
