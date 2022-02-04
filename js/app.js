@@ -31,7 +31,7 @@ let winner
     init()
 
     function init(){
-      boardArray = [1, 1, null,null, null, null, null, null, null]
+      boardArray = [1, 1, -1, null, null, -1, null, null, null]
 
       console.log(boardArray)
       turn = 1
@@ -45,7 +45,7 @@ let winner
     for(let i = 0; i < boardArray.length; i++){
       let currentSquare = boardArray[i]
       if(currentSquare === -1){
-        squares[i].style.color = 'green'
+        squares[i].style.backgroundColor = 'green'
       } else if(currentSquare === 1) {
         squares[i].style.backgroundColor = 'blue'
       } else{
