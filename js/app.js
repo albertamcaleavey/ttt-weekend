@@ -3,7 +3,7 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let boardArray = []
+let boardArray
 // 1.1) Use an array to represent the squares on the board.
 let turn
 // 1.2) Use a turn variable to track whose turn it is.
@@ -13,11 +13,10 @@ let winner
 	  // a tie has occured
 	  // or a game that is still in play.
 /*------------------------ Cached Element References ------------------------*/
-	// 2.1) Store the 9 elements that represent the squares on the page.
-	  // You may want to give each square a class name in your HTML to make this easier!
+
     const squares = document.querySelectorAll('.square')
-     // should I select them by class or element?
     console.log(squares)
+
 	// 2.2) Store the element that displays the game status on the page.
   const gameStatus = document.getElementById('message')
 
@@ -32,7 +31,7 @@ let winner
     init()
 
     function init(){
-      boardArray = [1, 1, -1, 1, null, null, null, null, null]
+      boardArray = [1, 1, null,null, null, null, null, null, null]
 
       console.log(boardArray)
       turn = 1
@@ -45,16 +44,12 @@ let winner
    function render() {
     for(let i = 0; i < boardArray.length; i++){
       let currentSquare = boardArray[i]
-      // console.log(currentSquare)
       if(currentSquare === -1){
-        currentSquare.style.backgroundColor = 'green'
-        // if player 1 occupies the current square being iterated over, change its color to green
+        squares[i].style.color = 'green'
       } else if(currentSquare === 1) {
-        currentSquare.style.backgroundColor = 'blue'
-        // if player 2 occupies the current square being iterated over, change its color to blue
-      } else {
-        currentSquare.style.backgroundColor= 'red'
-        // if current square being iterated over is empty, change its color to red
+        squares[i].style.backgroundColor = 'blue'
+      } else{
+        squares[i].style.backgroundColor= 'red'
       }
       
     }
