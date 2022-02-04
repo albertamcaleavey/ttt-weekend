@@ -1,5 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const winCombos = [
+  []
+]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -31,7 +33,7 @@ let winner
     init()
 
     function init(){
-      boardArray = [1, 1, -1, null, null, -1, null, null, null]
+      boardArray = [1, 1, 1, null, null, -1, null, null, null]
 
       console.log(boardArray)
       turn = 1
@@ -53,19 +55,30 @@ let winner
         squares[i].style.backgroundColor= 'red'
       }
     }
-    if(winner !== null){
-      gameStatus.textContent = `It's player ${turn}'s turn!` 
-    } else if(winner === "T") {
-      gameStatus.textContent = "It's a tie!"
-    } else{
-      gameStatus.textContent = `Congratulations! Player ${turn} won!`
+    // MIGHT NEED TO COME BACK TO THIS !!!!!
+    if(winner === null){
+      gameStatus.textContent = `It's ${playerName()}'s turn!` 
+    } else {
+      winner === "T" ? gameStatus.textContent = "It's a tie!" : gameStatus.textContent = `Congratulations! ${playerName()} won!`
+    }
+    
+    function playerName(){
+      if(turn === -1) {
+        return "Player 1"
+      } else if(turn === 1){
+        return "Player 2"
+      }
     }
   } 
   
-  
-  // 3.3.2) Render a message reflecting the currrent game state:
-    // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
-      // Hint: Maybe use a ternary inside of a template literal here?
-    // 3.3.2.2) If winner is equal to 'T' (tie), render a tie message.
-    // 3.3.2.3) Otherwise, render a congratulatory message to which player has won.
-      // Hint (again): Maybe use a ternary inside a template literal here
+
+
+
+  // when winner = null, the game is in progess
+    // message = whose turn it is
+  // when winner = T, its a tie
+    // message = its a tie
+  // otherwise (if winner)
+
+  // if winner = null, the game is in progess- wouldn't you want a message to say whose turn it is while the game is in progress?
+  // when the winner is not null, that means there is a tie or a winner?
