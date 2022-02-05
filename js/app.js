@@ -1,30 +1,31 @@
 /*-------------------------------- Constants --------------------------------*/
-let winCombos = [] 
+const winCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 let boardArray
-// 1.1) Use an array to represent the squares on the board.
 let turn
-// 1.2) Use a turn variable to track whose turn it is.
 let winner 
-// 1.3) Use a winner variable to represent three different game states:
-	  // a player that won
-	  // a tie has occured
-	  // or a game that is still in play.
+
 /*------------------------ Cached Element References ------------------------*/
   let squares = document.querySelectorAll('.square')
-  // a node list containing each element with a class of square= all of the (divs) squares
 
   let gameStatus = document.getElementById('message')
-  // the h2 element 
+
+  let replayButton = document.getElementById('replay')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelector('.board').addEventListener('click', handleClick)
-// when any of the elements in section (the div squares) are clicked, handleClick function is invoked
-  // this uses bubbling 
-
 
 /*-------------------------------- Functions --------------------------------*/
   // INITIALIZE FUNCTION
@@ -32,9 +33,7 @@ document.querySelector('.board').addEventListener('click', handleClick)
     init()
 
     function init(){
-      // resets the game 
       boardArray = [null, null, null, null, null, null, null, null, null]
-      // console.log(boardArray)
       turn = 1
       winner = null
       render()
@@ -53,8 +52,6 @@ document.querySelector('.board').addEventListener('click', handleClick)
         squares[i].textContent = ''
       }
     }
-
-    // changes the h2 element to display a message depending on the state of the game
 
     // MIGHT NEED TO COME BACK TO THIS !!!!!
     if(!winner){
@@ -82,32 +79,8 @@ document.querySelector('.board').addEventListener('click', handleClick)
     }
   } 
   // const array of arrays that includes all possible winning  combinations 
-
-  // figure out how to put this in the const area above 
- [
-    [boardArray[0], boardArray[1], boardArray[2]],
-    [boardArray[3], boardArray[4], boardArray[5]],
-    [boardArray[6], boardArray[7], boardArray[8]],
-    [boardArray[0], boardArray[3], boardArray[6]],
-    [boardArray[1], boardArray[4], boardArray[7]],
-    [boardArray[2], boardArray[5], boardArray[8]],
-    [boardArray[0], boardArray[4], boardArray[8]],
-    [boardArray[2], boardArray[4], boardArray[6]],
-  ]
+ 
   
-
-  // winCombos = [
-  //   [squares[0], squares[1], squares[2]],
-  //   [squares[3], squares[4], squares[5]],
-  //   [squares[6], squares[7], squares[8]],
-  //   [squares[0], squares[3], squares[6]],
-  //   [squares[1], squares[4], squares[7]],
-  //   [squares[2], squares[5], squares[8]],
-  //   [squares[0], squares[4], squares[8]],
-  //   [squares[2], squares[4], squares[6]],
-  // ]
-
-
 
 // HANDLE CLICK FUNCTION - when a square is clicked
 
@@ -117,72 +90,89 @@ function handleClick(evt){
   // turn its id into a number
   // this number corresponds to an index which = a spot on the board in the board Array
   let sqIdx = parseInt(clickedSquare.split('').splice(2, 2).join(''))
-  // console.log(sqIdx)
-  
   // if the board has a value at that index (index of the element that was clicked), return
   // if there is a winner, return
+  
 if(boardArray[sqIdx] !== null){
   return
 }  else if (winner !== null){
   return 
+} else {
+  boardArray[sqIdx] = turn
 }
 // update board array at the index, with the value of turn
-
-  boardArray[sqIdx] = turn
-
+  
 // change turn 
 turn = turn * -1
 // console.log(boardArray)
 render()
-
 getWinner()
+
 }
 
 function getWinner(){
   // loop through each of the winning combos- each array in the winCombos array
-  winCombos.forEach(function(combo, index){
-    // total up the three board positions using the three indexes in the current combo
-    let total = combo[0] + combo[1] + combo[2]
-    console.log(total)
-    // console.log(total)
-    // convert the total to an absolute value (convert any negative total to positive)
-    if(total < 0) {
-      total = total * -1
-    }
-    // if total = 3 then there is a winner
-    // set winner to the first index of the winning combo array
-    if(total === 3){
-      winner = combo[0]
-    } else if (combo[index] !== null){
-      return winner = "T"
-    } else {
-      return winner = null
-    }
-    // console.log(winner)
-    render()
-  }
-  
-  )}
+ winCombos.forEach(function(combo){
+   console.log(combo)
+   const a = combo[0]
+   const b = combo[1]
+   const c = combo[2]
+   if(Math.abs(boardArray[a] + boardArray[b] + boardArray[c]) === 3){
+     winner = boardArray[a]
+     console.log(winner)
+   }
+   
+  // total up the three board positions using the three indexes in the current combo
+// let total = combo[0] + combo[1] + combo[2]
+// // convert the total to an absolute value (convert any negative total to positive)
+// console.log(total)
+// if(total < 0) {
+//  total = total * -1
+// }
+// if(total === 3){
 
-
-
-
-
-
-// TO DO:
-// 1. figure out where the const array of possible winning options should go 
-
-
-// winCombos.forEach(function(array){
-//   // total up the three board positions using the three indexes in the current combo
-//   let total = array[0] + array[1] + array[2]
-//   // console.log(total)
-//   // convert the total to an absolute value (convert any negative total to positive)
-//   if(total < 0) {
-//     total = total * -1
-//   }
-//   if(total === 3){
-//     winner = array[0]
-//   }
-//   console.log(winner)
+// }
+// render()
 // })
+
+})
+
+// console.log(winCombos)
+
+
+
+
+// if(Math.abs(boardArray[0] + boardArray[1] + boardArray[2]) === 3){
+//   return boardArray[0]
+// } 
+// if(Math.abs(boardArray[3] + boardArray[4] + boardArray[5]) === 3){
+//   return boardArray[3]
+// } 
+// if(Math.abs(boardArray[6] + boardArray[7] + boardArray[8]) === 3){
+//   return boardArray[6]
+// } 
+// if(Math.abs(boardArray[0] + boardArray[3] + boardArray[6]) === 3){
+//   return boardArray[0]
+// } 
+// if(Math.abs(boardArray[1] + boardArray[4] + boardArray[7]) === 3){
+//   return boardArray[1]
+// } 
+// if(Math.abs(boardArray[2] + boardArray[5] + boardArray[8]) === 3){
+//   return boardArray[2]
+// } 
+// if(Math.abs(boardArray[0] + boardArray[4] + boardArray[8]) === 3){
+//   return boardArray[0]
+// } 
+// if(Math.abs(boardArray[2] + boardArray[4] + boardArray[6]) === 3){
+//   return boardArray[2]
+// } 
+
+
+
+
+
+
+
+
+
+}
