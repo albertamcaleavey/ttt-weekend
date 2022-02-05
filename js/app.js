@@ -15,6 +15,7 @@ const winCombos = [
 let boardArray
 let turn
 let winner 
+let winnerName
 
 /*------------------------ Cached Element References ------------------------*/
   let squares = document.querySelectorAll('.square')
@@ -55,23 +56,15 @@ document.getElementById('replay').addEventListener('click', init, render)
       }
     }
 
-    // MIGHT NEED TO COME BACK TO THIS !!!!!
-    if(!winner){
+    if(winner === null){
       gameStatus.textContent = `It's ${playerName()}'s turn!` 
     } else if(winner === "T") {
        gameStatus.textContent = "It's a tie!" 
     } else {
-         gameStatus.textContent = `Congratulations! ${playerName()} won!`
+         gameStatus.textContent = `Congratulations! ${winnerName} won!`
     }
-    // USING TEMPLATE LITERALS 
-    // if(!winner){
-    //   gameStatus.textContent = `It's ${playerName()}'s turn!` 
-    // } else {
-    //   winner === "T" ? gameStatus.textContent = "It's a tie!" : gameStatus.textContent = `Congratulations! ${playerName()} won!`
-    // }
 
-    // sets player names to the values being used- 1 and -1
-    // MAY NEED TO SWITCH PLAYER X AND O 
+    // sets player names to the values being used: 1 and -1
     function playerName(){
       if(turn === -1) {
         return "O"
@@ -80,9 +73,7 @@ document.getElementById('replay').addEventListener('click', init, render)
       }
     }
   } 
-  // const array of arrays that includes all possible winning  combinations 
  
-  
 
 // HANDLE CLICK FUNCTION - when a square is clicked
 
@@ -94,7 +85,6 @@ function handleClick(evt){
   let sqIdx = parseInt(clickedSquare.split('').splice(2, 2).join(''))
   // if the board has a value at that index (index of the element that was clicked), return
   // if there is a winner, return
-  
 if(boardArray[sqIdx] !== null){
   return
 }  else if (winner !== null){
@@ -123,13 +113,20 @@ function getWinner(){
    if(Math.abs(boardArray[a] + boardArray[b] + boardArray[c]) === 3){
      winner = boardArray[a]
      console.log(winner)
-   } else if (a !== null && b !== null && c !== null){
+   } else if (boardArray.every(function(element){
+     return element !== null
+   })){
      winner = "T"
    } else {
      return null
    }
-   
+   // sets winnerName to display in render message
+   if(winner === 1){
+     winnerName = 'X'
+   }
+   if(winner === -1){
+     winnerName = 'O'
+   }
 render()
-
  })
 }
