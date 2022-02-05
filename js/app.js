@@ -21,11 +21,13 @@ let winner
 
   let gameStatus = document.getElementById('message')
 
-  let replayButton = document.getElementById('replay')
+ 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelector('.board').addEventListener('click', handleClick)
+
+document.getElementById('replay').addEventListener('click', init, render)
 
 /*-------------------------------- Functions --------------------------------*/
   // INITIALIZE FUNCTION
@@ -72,9 +74,9 @@ document.querySelector('.board').addEventListener('click', handleClick)
     // MAY NEED TO SWITCH PLAYER X AND O 
     function playerName(){
       if(turn === -1) {
-        return "Player O"
+        return "O"
       } else if(turn === 1){
-        return "Player X"
+        return "X"
       }
     }
   } 
@@ -113,66 +115,21 @@ getWinner()
 function getWinner(){
   // loop through each of the winning combos- each array in the winCombos array
  winCombos.forEach(function(combo){
-   console.log(combo)
+  //  console.log(combo)
    const a = combo[0]
    const b = combo[1]
    const c = combo[2]
+  //  console.log(a)
    if(Math.abs(boardArray[a] + boardArray[b] + boardArray[c]) === 3){
      winner = boardArray[a]
      console.log(winner)
+   } else if (a !== null && b !== null && c !== null){
+     winner = "T"
+   } else {
+     return null
    }
    
-  // total up the three board positions using the three indexes in the current combo
-// let total = combo[0] + combo[1] + combo[2]
-// // convert the total to an absolute value (convert any negative total to positive)
-// console.log(total)
-// if(total < 0) {
-//  total = total * -1
-// }
-// if(total === 3){
+render()
 
-// }
-// render()
-// })
-
-})
-
-// console.log(winCombos)
-
-
-
-
-// if(Math.abs(boardArray[0] + boardArray[1] + boardArray[2]) === 3){
-//   return boardArray[0]
-// } 
-// if(Math.abs(boardArray[3] + boardArray[4] + boardArray[5]) === 3){
-//   return boardArray[3]
-// } 
-// if(Math.abs(boardArray[6] + boardArray[7] + boardArray[8]) === 3){
-//   return boardArray[6]
-// } 
-// if(Math.abs(boardArray[0] + boardArray[3] + boardArray[6]) === 3){
-//   return boardArray[0]
-// } 
-// if(Math.abs(boardArray[1] + boardArray[4] + boardArray[7]) === 3){
-//   return boardArray[1]
-// } 
-// if(Math.abs(boardArray[2] + boardArray[5] + boardArray[8]) === 3){
-//   return boardArray[2]
-// } 
-// if(Math.abs(boardArray[0] + boardArray[4] + boardArray[8]) === 3){
-//   return boardArray[0]
-// } 
-// if(Math.abs(boardArray[2] + boardArray[4] + boardArray[6]) === 3){
-//   return boardArray[2]
-// } 
-
-
-
-
-
-
-
-
-
+ })
 }
