@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-let winCombos = []
+let winCombos = [] 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -44,8 +44,7 @@ document.querySelector('.board').addEventListener('click', handleClick)
    // RENDER FUNCTION
    function render() {
     for(let i = 0; i < boardArray.length; i++){
-      // the squares will change color depending on their value (depending on if they're occupied by player 1, 2 or not occupied)
-      // let currentSquare = boardArray[i]
+      // the squares will change depending on their value (depending on if they're occupied by player 1, 2 or not occupied)
       if(boardArray[i] === -1){
         squares[i].textContent = 'O'
       } else if(boardArray[i] === 1) {
@@ -85,7 +84,7 @@ document.querySelector('.board').addEventListener('click', handleClick)
   // const array of arrays that includes all possible winning  combinations 
 
   // figure out how to put this in the const area above 
-  winCombos = [
+ [
     [boardArray[0], boardArray[1], boardArray[2]],
     [boardArray[3], boardArray[4], boardArray[5]],
     [boardArray[6], boardArray[7], boardArray[8]],
@@ -121,18 +120,16 @@ function handleClick(evt){
   // console.log(sqIdx)
   
   // if the board has a value at that index (index of the element that was clicked), return
+  // if there is a winner, return
 if(boardArray[sqIdx] !== null){
   return
-}  
-// if there is a winner, return
- else if (winner !== null){
+}  else if (winner !== null){
   return 
 }
-
 // update board array at the index, with the value of turn
-else {
+
   boardArray[sqIdx] = turn
-}
+
 // change turn 
 turn = turn * -1
 // console.log(boardArray)
@@ -143,26 +140,29 @@ getWinner()
 
 function getWinner(){
   // loop through each of the winning combos- each array in the winCombos array
-  winCombos.forEach(function(array){
+  winCombos.forEach(function(combo, index){
     // total up the three board positions using the three indexes in the current combo
-    let total = array[0] + array[1] + array[2]
+    let total = combo[0] + combo[1] + combo[2]
     console.log(total)
+    // console.log(total)
     // convert the total to an absolute value (convert any negative total to positive)
     if(total < 0) {
       total = total * -1
     }
+    // if total = 3 then there is a winner
+    // set winner to the first index of the winning combo array
     if(total === 3){
-      winner = array[0]
+      winner = combo[0]
+    } else if (combo[index] !== null){
+      return winner = "T"
+    } else {
+      return winner = null
     }
-  })
+    // console.log(winner)
+    render()
+  }
   
-
-  
-
-  // if the total equals 3, we have a winner! set the winner variable to the board's value at the index specified by the first index of that winning combination's array by returning that value.
-
-  //
-}
+  )}
 
 
 
@@ -171,3 +171,18 @@ function getWinner(){
 
 // TO DO:
 // 1. figure out where the const array of possible winning options should go 
+
+
+// winCombos.forEach(function(array){
+//   // total up the three board positions using the three indexes in the current combo
+//   let total = array[0] + array[1] + array[2]
+//   // console.log(total)
+//   // convert the total to an absolute value (convert any negative total to positive)
+//   if(total < 0) {
+//     total = total * -1
+//   }
+//   if(total === 3){
+//     winner = array[0]
+//   }
+//   console.log(winner)
+// })
