@@ -13,7 +13,6 @@ let winner
 	  // a tie has occured
 	  // or a game that is still in play.
 /*------------------------ Cached Element References ------------------------*/
-
   let squares = document.querySelectorAll('.square')
   // a node list containing each element with a class of square= all of the (divs) squares
 
@@ -22,13 +21,7 @@ let winner
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-// squares.forEach(function(square){
-//   square.addEventListener('click', handleClick())
-// })
-
 document.querySelector('.board').addEventListener('click', handleClick)
-
-
 // when any of the elements in section (the div squares) are clicked, handleClick function is invoked
   // this uses bubbling 
 
@@ -59,18 +52,25 @@ document.querySelector('.board').addEventListener('click', handleClick)
         squares[i].textContent = 'X'
       } else{
         squares[i].textContent = ''
-        // change to remaining the same as the background color
       }
     }
 
     // changes the h2 element to display a message depending on the state of the game
 
     // MIGHT NEED TO COME BACK TO THIS !!!!!
-    if(winner === null){
+    if(!winner){
       gameStatus.textContent = `It's ${playerName()}'s turn!` 
+    } else if(winner === "T") {
+       gameStatus.textContent = "It's a tie!" 
     } else {
-      winner === "T" ? gameStatus.textContent = "It's a tie!" : gameStatus.textContent = `Congratulations! ${playerName()} won!`
+         gameStatus.textContent = `Congratulations! ${playerName()} won!`
     }
+    // USING TEMPLATE LITERALS 
+    // if(!winner){
+    //   gameStatus.textContent = `It's ${playerName()}'s turn!` 
+    // } else {
+    //   winner === "T" ? gameStatus.textContent = "It's a tie!" : gameStatus.textContent = `Congratulations! ${playerName()} won!`
+    // }
 
     // sets player names to the values being used- 1 and -1
     // MAY NEED TO SWITCH PLAYER X AND O 
@@ -86,49 +86,86 @@ document.querySelector('.board').addEventListener('click', handleClick)
 
   // figure out how to put this in the const area above 
   winCombos = [
-    [squares[0], squares[1], squares[2]],
-    [squares[3], squares[4], squares[5]],
-    [squares[6], squares[7], squares[8]],
-    [squares[0], squares[3], squares[6]],
-    [squares[1], squares[4], squares[7]],
-    [squares[2], squares[5], squares[8]],
-    [squares[0], squares[4], squares[8]],
-    [squares[2], squares[4], squares[6]],
+    [boardArray[0], boardArray[1], boardArray[2]],
+    [boardArray[3], boardArray[4], boardArray[5]],
+    [boardArray[6], boardArray[7], boardArray[8]],
+    [boardArray[0], boardArray[3], boardArray[6]],
+    [boardArray[1], boardArray[4], boardArray[7]],
+    [boardArray[2], boardArray[5], boardArray[8]],
+    [boardArray[0], boardArray[4], boardArray[8]],
+    [boardArray[2], boardArray[4], boardArray[6]],
   ]
   
+
+  // winCombos = [
+  //   [squares[0], squares[1], squares[2]],
+  //   [squares[3], squares[4], squares[5]],
+  //   [squares[6], squares[7], squares[8]],
+  //   [squares[0], squares[3], squares[6]],
+  //   [squares[1], squares[4], squares[7]],
+  //   [squares[2], squares[5], squares[8]],
+  //   [squares[0], squares[4], squares[8]],
+  //   [squares[2], squares[4], squares[6]],
+  // ]
+
+
 
 // HANDLE CLICK FUNCTION - when a square is clicked
 
 function handleClick(evt){
   // find the id of the element that was clicked 
   let clickedSquare = evt.target.id
-  // turn its id into a number, which corresponds to each spot on the board in the board Array
+  // turn its id into a number
+  // this number corresponds to an index which = a spot on the board in the board Array
   let sqIdx = parseInt(clickedSquare.split('').splice(2, 2).join(''))
-  console.log(sqIdx)
-  
+  // console.log(sqIdx)
   
   // if the board has a value at that index (index of the element that was clicked), return
 if(boardArray[sqIdx] !== null){
   return
 }  
 // if there is a winner, return
-if (winner !== null){
+ else if (winner !== null){
   return 
 }
 
 // update board array at the index, with the value of turn
-boardArray[sqIdx] = turn
-
+else {
+  boardArray[sqIdx] = turn
+}
 // change turn 
 turn = turn * -1
 // console.log(boardArray)
+render()
 
 getWinner()
 }
 
 function getWinner(){
+  // loop through each of the winning combos- each array in the winCombos array
+  winCombos.forEach(function(array){
+    // total up the three board positions using the three indexes in the current combo
+    let total = array[0] + array[1] + array[2]
+    console.log(total)
+    // convert the total to an absolute value (convert any negative total to positive)
+    if(total < 0) {
+      total = total * -1
+    }
+    if(total === 3){
+      winner = array[0]
+    }
+  })
   
+
+  
+
+  // if the total equals 3, we have a winner! set the winner variable to the board's value at the index specified by the first index of that winning combination's array by returning that value.
+
+  //
 }
+
+
+
 
 
 
