@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(126, 160, 212);
 	/* Use a system font, if none are available use an available sans-sarif   font */
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -8,6 +8,20 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e7a6cc8b-9978-4591-ac21-f008c3c08bf4/d2qmgs5-07845583-0d08-4106-be3e-72c83e1596fe.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9lN2E2Y2M4Yi05OTc4LTQ1OTEtYWMyMS1mMDA4YzNjMDhiZjQvZDJxbWdzNS0wNzg0NTU4My0wZDA4LTQxMDYtYmUzZS03MmM4M2UxNTk2ZmUucG5nIn1dXX0.StswGSjBwJmuM6SRx24bwZ_5j1MtXkdEdB2aLYhFMKc);
+  background-repeat:no-repeat;
+  background-position: center center;
+  
+}
+
+h1 {
+  font-family: 'Londrina Outline', cursive;
+  font-size: 70px;
+}
+
+h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
 }
 
 
@@ -18,15 +32,23 @@ section.board {
   grid-template-columns: repeat(3, 10vmin);
   grid-gap: 0vmin;
   justify-content: center;
+  
 }
 
 div {
-  border: 3px solid rgb(63, 63, 63);
+  border: 3px solid rgb(0, 0, 0);
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
+  background-color: rgb(255, 255, 255);
 }
 
 #replay {
-  margin: 20px;
+  margin: 15px;
+  color: white;
+  background-color: rgb(27, 126, 218);
+  border: none;
+  border-radius: 3px;
+  padding: 6px;
+  font-family: 'Lato', sans-serif;
 }
