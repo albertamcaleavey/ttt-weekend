@@ -37,6 +37,7 @@ document.getElementById('replay').addEventListener('click', init, render)
       boardArray = [null, null, null, null, null, null, null, null, null]
       turn = 1
       winner = null
+      confetti.stop()
       render()
     }
 
@@ -111,6 +112,7 @@ function getWinner(){
    if(Math.abs(boardArray[a] + boardArray[b] + boardArray[c]) === 3){
      // sets the winner to either X or O, depending on the value of the first element in the current winCombos array  
      winner = boardArray[a]
+     confetti.start()
     // checks if every square on the board is occupied and if so, sets winner to tie
    } else if (boardArray.every(function(element){
      return element !== null
