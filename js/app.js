@@ -37,8 +37,8 @@ document.getElementById('replay').addEventListener('click', init, render)
       boardArray = [null, null, null, null, null, null, null, null, null]
       turn = 1
       winner = null
-      confetti.stop()
       render()
+      confetti.stop()
     }
 
 
