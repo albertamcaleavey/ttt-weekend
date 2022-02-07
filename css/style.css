@@ -20,9 +20,10 @@ h1 {
 }
 
 h2 {
-  font-family: 'Assistant', sans-serif;
-  color: black;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  color: rgb(68, 68, 68);
   font-size: 30px;
+  margin: 20px;
 }
 
 
@@ -48,9 +49,10 @@ div {
 #replay {
   margin: 15px;
   color: white;
-  background-color: rgb(37, 117, 209);
+  background-color: rgb(11, 90, 180);
   border: none;
   border-radius: 3px;
-  padding: 6px;
-  font-family: 'Assistant', sans-serif
+  padding: 7px;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: 14px;
 }
