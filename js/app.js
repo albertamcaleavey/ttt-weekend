@@ -47,8 +47,10 @@ document.getElementById('replay').addEventListener('click', init, render)
       // displays an X or O on the spot on the board that corresponds to the current index, depending on the value of that index
       if(boardArray[i] === -1){
         squares[i].textContent = 'O'
+        squares[i].style.color = 'blue'
       } else if(boardArray[i] === 1) {
         squares[i].textContent = 'X'
+        squares[i].style.color = 'red'
       } else{
         squares[i].textContent = ''
       }
