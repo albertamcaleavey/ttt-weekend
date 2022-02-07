@@ -61,7 +61,6 @@ document.getElementById('replay').addEventListener('click', init, render)
     } else {
          gameStatus.textContent = `Congratulations! ${winnerName} won!`
     }
-
     // sets player names to the values being used: 1 and -1
     function playerName(){
       if(turn === -1) {

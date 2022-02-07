@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(126, 160, 212);
+    background-color: rgba(108, 155, 226, 0.781);
 	/* Use a system font, if none are available use an available sans-sarif   font */
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -20,7 +20,8 @@ h1 {
 }
 
 h2 {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Assistant', sans-serif;
+  color: black;
   font-size: 30px;
 }
 
@@ -40,13 +41,14 @@ div {
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.829);
+  font-family: 'Oooh Baby', cursive;
 }
 
 #replay {
   margin: 15px;
   color: white;
-  background-color: rgb(27, 126, 218);
+  background-color: rgb(37, 117, 209);
   border: none;
   border-radius: 3px;
   padding: 6px;
